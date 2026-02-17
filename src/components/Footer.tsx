@@ -4,30 +4,29 @@ import Image from "next/image";
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Column 1: Logo + Description */}
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 text-center md:text-left">
+          {/* Column 1: Logo + Description – centered on mobile, left on desktop */}
           <div className="flex flex-col items-center md:items-start">
-            <Link href="/" className="mb-4 inline-block">
-              <div className="relative h-16 w-64">
+            <Link href="/" className="mb-6 inline-block">
+              <div className="relative h-16 w-64 md:h-20 md:w-72 mx-auto md:mx-0">
                 <Image
                   src="/media/bramaqLogo.png"
                   alt="BRAMAQ Transportes Especiais e Terraplanagem - Logo"
                   fill
                   className="object-contain"
-                  priority={false}
                 />
               </div>
             </Link>
-            <p className="text-sm text-gray-400 max-w-xs text-center md:text-left">
+            <p className="text-sm text-gray-400 max-w-xs mx-auto md:mx-0">
               Especializados em transportes especiais de cargas indivisíveis, máquinas pesadas, geradores e terraplanagem em Joinville e região.
             </p>
           </div>
 
-          {/* Column 2: Links rápidos */}
-          <div className="flex flex-col items-center md:items-start">
+          {/* Column 2: Links Rápidos – centered on mobile */}
+          <div className="flex flex-col items-center md:items-center">
             <h3 className="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
                   Início
@@ -51,28 +50,24 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Contato */}
-          <div className="flex flex-col items-center md:items-start">
+          {/* Column 3: Contato – centered on mobile */}
+          <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold text-white mb-4">Contato</h3>
-            <div className="space-y-3 text-sm">
+            <div className="space-y-4 text-sm md:items-end">
               <a
                 href="https://wa.me/5547999340968?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20transporte%20especial"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white transition-colors"
+                className="flex items-center justify-center md:justify-start gap-2 hover:text-white transition-colors"
               >
-                <span className="text-green-500">WhatsApp:</span>
-                <span>(47) 9 9934-0968</span>
+                <span className="text-green-500 font-medium">WhatsApp:</span>
+                <span>(47) 99934-0968</span>
               </a>
-              <a href="mailto:orcamento@bramaqtransportes.com.br" className="hover:text-white transition-colors">
-                orcamento@bramaqtransportes.com.br
-              </a>
-              <p className="text-gray-500">
-                Joinville, Santa Catarina
-              </p>
-              <div className="flex gap-5 justify-center md:justify-start">
-              <h4 className="text-sm font-medium text-gray-400 mb-3">Siga-nos nas redes</h4>
-                <a
+
+              <div className="flex flex-col items-center md:items-center gap-2">
+                <h4 className="text-sm font-medium text-gray-400">Redes Sociais</h4>
+                <div className="flex gap-6">
+                   <a
                 href="https://www.instagram.com/bramaq_transportes/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -97,13 +92,14 @@ export function Footer() {
                         </svg>
                     </a>
                 </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} BRAMAQ Transportes Especiais e Terraplanagem. Todos os direitos reservados.</p>
+        {/* Bottom copyright – always centered */}
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+          <p>© {new Date().getFullYear()} BRAMAQ Transportes Especiais e Terraplanagem. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
