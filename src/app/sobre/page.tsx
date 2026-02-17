@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function Sobre() {
   return (
@@ -10,10 +11,15 @@ export default function Sobre() {
           <CardHeader>
             <CardTitle>Nossa História</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col items-center">
             <p className="text-muted-foreground">
-              Fundada em Joinville, a BRAMAQ Transportes e Terraplanagem atua há mais de X anos no mercado de...
-            </p>
+              Fundada em Joinville, a BRAMAQ Transportes e Terraplanagem atua há mais de 10 anos no mercado de transporte e terraplanagem, oferecendo soluções eficientes para nossos clientes.
+            </p><Image
+              src="/media/3eixoVazia.jpeg"
+              alt="Três eixos vazia"
+              width={500}
+              height={300}
+            />
           </CardContent>
         </Card>
 
@@ -21,10 +27,16 @@ export default function Sobre() {
           <CardHeader>
             <CardTitle>Missão</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col items-center">
             <p className="text-muted-foreground">
               Fornecer serviços de transporte e terraplanagem com qualidade, segurança e pontualidade.
             </p>
+            <Image
+              src="/media/donoEMotora.jpeg"
+              alt="Dono e motora"
+              width={500}
+              height={300}
+            />
           </CardContent>
         </Card>
       </div>
