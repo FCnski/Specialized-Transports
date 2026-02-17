@@ -27,7 +27,7 @@ const slides = [
     description: "Nivelamento, escavação e aterro com precisão",
   },
   {
-    src: "/media/cavao3eixoMaterialCnstr.JPG",
+    src: "/media/cavalo480_4eixo.jpeg",
     alt: "Carga especial indivisível",
     title: "Transporte Especializado",
     description: "Estruturas metálicas e cargas acima de 50 toneladas",
