@@ -43,9 +43,9 @@ export async function enviarOrcamento(prevState: any, formData: FormData) {
 
   try {
    await resend.emails.send({
-        from: 'BRAMAQ Teste <onboarding@resend.dev>',
+        from: 'BRAMAQ Orçamentos <orcamento@bramaqtransportes.com.br>',
         to: ['orcamento@bramaqtransportes.com.br'],
-        subject: `TESTE ORÇAMENTO - ${dadosRaw.nome}`,
+        subject: `ORÇAMENTO - ${dadosRaw.nome}`,
         text: `
     Nome: ${dadosRaw.nome}
     Email: ${dadosRaw.email}
