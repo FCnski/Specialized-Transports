@@ -43,8 +43,8 @@ export async function enviarOrcamento(prevState: any, formData: FormData) {
 
   try {
    await resend.emails.send({
-        from: 'BRAMAQ Teste <onboarding@resend.dev>',  // ← isso sempre funciona em contas novas
-        to: ['bramaqterraplenagem@hotmail.com'],
+        from: 'BRAMAQ Teste <onboarding@resend.dev>',
+        to: ['orcamento@bramaqtransportes.com.br'],
         subject: `TESTE ORÇAMENTO - ${dadosRaw.nome}`,
         text: `
     Nome: ${dadosRaw.nome}
@@ -61,7 +61,6 @@ export async function enviarOrcamento(prevState: any, formData: FormData) {
     Descrição:
     ${dadosRaw.descricao}
         `,
-        // Para template bonito: use react-email depois, mas por agora texto simples resolve
         })
 
     return { success: true }

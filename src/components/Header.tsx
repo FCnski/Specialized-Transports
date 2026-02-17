@@ -1,54 +1,158 @@
-// components/Header.tsx
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";  // ← esse aqui depende do shadcn funcionar
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"  // ← add this import
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Menu } from "lucide-react"
 
 export function Header() {
+  const [open, setOpen] = useState(false)
+  const pathname = usePathname()  // gets current URL path
+
+  const navLinks = [
+    { href: "/", label: "Início" },          // added home for completeness
+    { href: "/sobre", label: "Sobre" },
+    { href: "/servicos", label: "Serviços" },
+    { href: "/contato", label: "Orçamento" },
+  ]
+
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-      <div className="container flex h-16 items-center justify-between px-4">
-        {/* Logo com link para home */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative h-10 w-40 md:h-12 md:w-48">  {/* ajuste tamanho conforme seu logo */}
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+      <div className="container mx-auto flex h-16 md:h-20 items-center justify-between pl-4 md:pl-6 lg:pl-8 pr-2 md:pr-3 lg:pr-4 max-w-7xl">
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0">
+          <div className="relative h-10 w-48 md:h-12 md:w-56">
             <Image
-              src="/media/bramaqLogo.png"  // ou .svg
-              alt="BRAMAQ Transportes Especiais e Terraplanagem - Logo"
+              src="/media/bramaqLogo.png"
+              alt="BRAMAQ Transportes Especiais e Terraplanagem"
               fill
-              className="object-contain"  // mantém proporção sem distorcer
-              priority  // carrega rápido no header
+              className="object-contain"
+              priority
             />
           </div>
-          {/* Opcional: texto ao lado se o logo não tiver o nome completo */}
-          {/* <span className="font-bold text-xl hidden md:block">BRAMAQ</span> */}
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="/sobre" className="text-sm font-medium hover:text-primary transition-colors">
-            Sobre
-          </Link>
-          <Link href="/servicos" className="text-sm font-medium hover:text-primary transition-colors">
-            Serviços
-          </Link>
-          <Link href="/contato" className="text-sm font-medium hover:text-primary transition-colors">
-            Contato / Orçamento
-          </Link>
-        </nav>
+        {/* Desktop Nav + Actions */}
+        <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          <nav className="flex items-center gap-8 lg:gap-12">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
 
-        <div className="flex items-center gap-4">
-          {/* Botão WhatsApp com número do seu logo */}
-          <Button asChild variant="default" size="sm">
-            <a 
-              href="https://wa.me/5547999340968?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20transporte%20especial" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
-              <span className="hidden sm:inline">WhatsApp</span>
-              <span>(47) 9 9934-0968</span>
-            </a>
-          </Button>
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-base font-medium transition-colors relative py-2 ${
+                    isActive
+                      ? "text-foreground font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
+          </nav>
+
+          <div className="flex items-center gap-5 lg:gap-6">
+            {/* Social icons */}
+            <div className="flex gap-4 lg:gap-5">
+              <a
+                href="https://www.instagram.com/bramaq_transportes/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-pink-600 transition-colors"
+                aria-label="Instagram BRAMAQ"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+
+              <a
+                href="https://www.facebook.com/p/Bramaq-Transportes-Especiais-e-Terraplenagem-100044318516753/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-blue-600 transition-colors"
+                aria-label="Facebook BRAMAQ"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+            </div>
+
+            <Button asChild size="default" className="bg-green-600 hover:bg-green-700 px-5 lg:px-6">
+              <a
+                href="https://wa.me/55479999340968?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20transporte%20especial"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp
+              </a>
+            </Button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Abrir menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <div className="flex flex-col gap-6 mt-10">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-lg font-medium ${isActive ? "text-primary font-semibold" : ""}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+
+              <div className="pt-6 border-t">
+                <h4 className="text-sm font-medium mb-4">Redes Sociais</h4>
+                <div className="flex gap-6">
+                  <a href="https://www.instagram.com/bramaq_transportes/" target="_blank" rel="noopener noreferrer">
+                    Instagram
+                  </a>
+                  <a href="https://www.facebook.com/p/Bramaq-Transportes-Especiais-e-Terraplenagem-100044318516753/" target="_blank" rel="noopener noreferrer">
+                    Facebook
+                  </a>
+                </div>
+              </div>
+
+              <Button asChild className="mt-4 bg-green-600 hover:bg-green-700">
+                <a
+                  href="https://wa.me/55479999340968?text=Olá!%20Gostaria%20de%20um%20orçamento..."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Falar no WhatsApp
+                </a>
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
-  );
+  )
 }

@@ -112,7 +112,7 @@ export default function Orcamento() {
                 )}
               </div>
 
-              <div>
+              <div className='justifyflex gap-5 justify-center md:justify-start md:col-span-2'>
                 <Label htmlFor="descricao">Descrição da Carga e Necessidades *</Label>
                 <Textarea 
                     id="descricao" 
