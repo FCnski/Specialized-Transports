@@ -117,7 +117,7 @@ export function Header() {
             <Link href="/" onClick={() => setOpen(false)}>
               <div className="relative h-12 w-64">
                 <Image
-                  src="/logo-bramaq.png"
+                  src="/media/bramaqLogo.png"
                   alt="BRAMAQ Logo"
                   fill
                   className="object-contain"
